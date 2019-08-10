@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  node_web:
+    build: ./node
+    expose:
+      - 80
+      - 443
+      - 3000
+    container_name: node_web
+    volumes:
+      - ./node_web:/src
+    environment:
+      - TZ=Asia/Tokyo
+      - VIRTUAL_HOST=node_web.localhost
+    networks:
+      common:
+        aliases:
+          - node_web.localhost
+    tty: true
+    restart: always
+    command: npm start
+
+networks:
+  common:
+    external:
+      name: common
