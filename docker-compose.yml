@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  node_web:
+  node_mail:
     build: ./node
     expose:
       - 80
       - 443
       - 3000
-    container_name: node_web
+    container_name: node_mail
     volumes:
       - ./node_web:/src
     environment:
       - TZ=Asia/Tokyo
-      - VIRTUAL_HOST=node_web.localhost
+      - VIRTUAL_HOST=node_mail.localhost
     networks:
       common:
         aliases:
-          - node_web.localhost
+          - node_mail.localhost
     tty: true
     restart: always
-    command: npm start
+    command: bash
 
 networks:
   common:
